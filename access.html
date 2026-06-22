@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Your Course | ASPT Certification Prep</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage: #2D5A3D;
+      --terracotta: #C8845A;
+      --charcoal: #1C1C1C;
+      --ivory: #FAF0E8;
+      --warm-white: #F5E4D4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { overflow-x: hidden; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: linear-gradient(135deg, #1a3a25, #2d5a3d);
+      color: var(--charcoal);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      background: white;
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--sage);
+      text-decoration: none;
+    }
+
+    .content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .content p {
+      color: #666;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1px solid rgba(45,90,61,0.2);
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color 0.2s;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: var(--terracotta);
+      box-shadow: 0 0 0 3px rgba(200,132,90,0.1);
+    }
+
+    .btn-access {
+      width: 100%;
+      background: var(--sage);
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .btn-access:hover { background: #1a3a25; }
+    .btn-access:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .message {
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .message.error {
+      background: #fee;
+      color: #c33;
+      border: 1px solid #fcc;
+      display: block;
+    }
+
+    .message.success {
+      background: #efe;
+      color: #3c3;
+      border: 1px solid #cfc;
+      display: block;
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .back-link a {
+      font-size: 0.85rem;
+      color: var(--sage);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .back-link a:hover { color: var(--terracotta); }
+
+    .divider {
+      margin: 2rem 0;
+      border: none;
+      border-top: 1px solid rgba(45,90,61,0.1);
+    }
+
+    .faq-note {
+      background: rgba(45,90,61,0.05);
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .faq-note strong { color: var(--sage); }
+
+    @media(max-width: 480px) {
+      .container {
+        padding: 2rem 1.5rem;
+      }
+      .content h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="logo">
+    <a href="/">ASPT Prep</a>
+  </div>
+
+  <div class="content">
+    <h1>Access Your Course</h1>
+    <p>Enter your access code to unlock your course materials</p>
+
+    <form id="accessForm" onsubmit="handleAccess(event)">
+      <div class="form-group">
+        <label for="accessCode">Access Code</label>
+        <input
+          type="text"
+          id="accessCode"
+          placeholder="Enter your code (e.g., ABC123XYZ)"
+          autocomplete="off"
+          required
+        >
+      </div>
+
+      <button type="submit" class="btn-access" id="submitBtn">Unlock Course</button>
+      <div class="message" id="message"></div>
+    </form>
+
+    <hr class="divider">
+
+    <div class="faq-note">
+      <strong>Don't have a code?</strong><br>
+      Purchase a course on our <a href="/" style="color: var(--terracotta); text-decoration: none;">homepage</a> to get your access code via email.
+    </div>
+
+    <div class="back-link">
+      <a href="/">← Back to Home</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Load valid access codes (in production, this would be from a secure backend)
+  const VALID_CODES = {
+    "PHLEB-001": { access: ["phlebotomy"], studentName: "Sample Student 1" },
+    "EKG-001": { access: ["ekg"], studentName: "Sample Student 2" },
+    "PCT-001": { access: ["pct"], studentName: "Sample Student 3" },
+    "CMA-001": { access: ["cma"], studentName: "Sample Student 4" },
+    "BUNDLE-001": { access: ["phlebotomy", "ekg", "pct", "cma"], studentName: "Sample Student 5" },
+  };
+
+  function handleAccess(e) {
+    e.preventDefault();
+    const code = document.getElementById('accessCode').value.trim().toUpperCase();
+    const message = document.getElementById('message');
+    const btn = document.getElementById('submitBtn');
+
+    message.className = 'message';
+    btn.disabled = true;
+
+    // Simulate verification delay
+    setTimeout(() => {
+      if (VALID_CODES[code]) {
+        const access = VALID_CODES[code];
+
+        // Store access in localStorage
+        localStorage.setItem('studentAccess', JSON.stringify({
+          code: code,
+          access: access.access,
+          studentName: access.studentName,
+          timestamp: new Date().getTime()
+        }));
+
+        message.className = 'message success';
+        message.textContent = '✓ Code verified! Redirecting to your dashboard...';
+
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 1500);
+      } else {
+        message.className = 'message error';
+        message.textContent = '✗ Invalid access code. Please check and try again.';
+        btn.disabled = false;
+      }
+    }, 500);
+  }
+
+  // Check if already logged in
+  if (localStorage.getItem('studentAccess')) {
+    window.location.href = 'dashboard.html';
+  }
+
+  // Get course parameter from URL if present
+  const params = new URLSearchParams(window.location.search);
+  const course = params.get('course');
+  if (course) {
+    document.querySelector('.content p').textContent =
+      `Enter your access code for ${course.charAt(0).toUpperCase() + course.slice(1)}`;
+  }
+</script>
+
+</body>
+</html>

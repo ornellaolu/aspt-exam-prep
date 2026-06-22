@@ -1,0 +1,10 @@
+{
+  "TEST-PHLEB-2026": { "access": ["phlebotomy"], "studentName": "Test Phlebotomy", "purchased": "2026-06-21" },
+  "TEST-EKG-2026": { "access": ["ekg"], "studentName": "Test EKG", "purchased": "2026-06-21" },
+  "TEST-PCT-2026": { "access": ["pct"], "studentName": "Test Patient Care", "purchased": "2026-06-21" },
+  "TEST-CMA-2026": { "access": ["cma"], "studentName": "Test Medical Assistant", "purchased": "2026-06-21" },
+  "TEST-BUNDLE-2026": { "access": ["phlebotomy", "ekg", "pct", "cma"], "studentName": "Test All Courses", "purchased": "2026-06-21" },
+  "PHLEB-50298": { "access": ["phlebotomy"], "studentName": "John Smith", "purchased": "2026-06-21" },
+  "EKG-49201": { "access": ["ekg"], "studentName": "Sarah Johnson", "purchased": "2026-06-21" },
+  "BUNDLE-50102": { "access": ["phlebotomy", "ekg", "pct", "cma"], "studentName": "Michael Davis", "purchased": "2026-06-21" }
+}

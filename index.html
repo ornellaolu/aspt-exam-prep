@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASPT Certification Exam Prep | Pass Your Exam on First Try</title>
+  <meta name="description" content="Comprehensive ASPT certification prep. Phlebotomy, EKG, PCT, CMA. $99 per course or $249 for all 4. Interactive modules, 650+ practice questions, full-length exams.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #25408F;
+      --teal: #00A998;
+      --coral: #d82e36;
+      --charcoal: #2c3e50;
+      --light-blue: #f0f6fb;
+      --light-gray: #f8f9fa;
+      --white: #ffffff;
+      --text: #333333;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { overflow-x: hidden; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+      width: 100%;
+    }
+
+    /* ── NAVIGATION ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(26, 58, 92, 0.1);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-logo {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--navy), var(--teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-links a:hover { color: var(--teal); }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--teal), var(--navy));
+      color: white;
+      padding: 0.7rem 1.8rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 168, 204, 0.3);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 140px 4rem 100px;
+      background: linear-gradient(135deg, #f0f6fb 0%, #e8f4f8 50%, #f5fafc 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 168, 204, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(0, 168, 204, 0.1);
+      border: 1px solid var(--teal);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 0.5px;
+    }
+
+    .hero-badge::before {
+      content: '✓';
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--navy);
+      margin-bottom: 1.2rem;
+      letter-spacing: -1px;
+    }
+
+    .hero-highlight {
+      color: var(--teal);
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--teal), #008fa3);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+      box-shadow: 0 10px 30px rgba(0, 168, 204, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 168, 204, 0.4);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--navy);
+      border: 2px solid var(--navy);
+      padding: 0.95rem 2.4rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-secondary:hover {
+      background: var(--navy);
+      color: white;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--teal);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 0.3rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      padding: 6rem 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.8rem;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: #666;
+      max-width: 700px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    /* ── COURSES GRID ── */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .course-card {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--teal), var(--coral));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .course-card:hover {
+      border-color: var(--teal);
+      box-shadow: 0 12px 40px rgba(0, 168, 204, 0.15);
+      transform: translateY(-6px);
+    }
+
+    .course-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .course-card.featured {
+      border-color: var(--coral);
+      background: linear-gradient(135deg, #fff8f5, #fffbf9);
+      transform: scale(1.02);
+    }
+
+    .course-card.featured::after {
+      content: 'BEST VALUE';
+      position: absolute;
+      top: 15px;
+      right: -35px;
+      background: var(--coral);
+      color: white;
+      padding: 0.4rem 3rem;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      transform: rotate(45deg);
+      box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
+    }
+
+    .course-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .course-card h3 {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.8rem;
+    }
+
+    .course-card p {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      min-height: 70px;
+    }
+
+    .course-meta {
+      font-size: 0.85rem;
+      color: var(--teal);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #e8e8e8;
+      letter-spacing: 0.3px;
+    }
+
+    .course-price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--teal);
+      margin-bottom: 1.5rem;
+      font-family: 'Sora', sans-serif;
+    }
+
+    .course-price small {
+      font-size: 0.65rem;
+      display: block;
+      font-weight: 400;
+      color: #999;
+      margin-top: 0.3rem;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-enroll {
+      background: linear-gradient(135deg, var(--teal), #008fa3);
+      color: white;
+      padding: 0.95rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-enroll:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 168, 204, 0.3);
+    }
+
+    .course-card.featured .btn-enroll {
+      background: linear-gradient(135deg, var(--coral), #e55a1f);
+    }
+
+    /* ── FEATURES ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .feature {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .feature-icon {
+      flex-shrink: 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(0, 168, 204, 0.1), rgba(0, 168, 204, 0.05));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      border: 1px solid rgba(0, 168, 204, 0.2);
+    }
+
+    .feature h4 {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .feature p {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* ── AUTHOR ── */
+    .author-section {
+      background: linear-gradient(135deg, var(--navy), #0d4166);
+      color: white;
+      padding: 4rem;
+      border-radius: 16px;
+      text-align: center;
+      margin: 4rem 0;
+    }
+
+    .author-section h3 {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+
+    .author-section p {
+      font-size: 1rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .author-cred {
+      font-size: 0.85rem;
+      opacity: 0.75;
+      margin-top: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ── FAQ ── */
+    .faq-list {
+      margin-top: 3rem;
+      max-width: 800px;
+    }
+
+    .faq-item {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #e8e8e8;
+      padding-bottom: 1.5rem;
+    }
+
+    .faq-item h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: color 0.2s;
+      font-family: 'Sora', sans-serif;
+    }
+
+    .faq-item h4:hover { color: var(--teal); }
+
+    .faq-item p {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.8;
+      margin-top: 0.8rem;
+      display: none;
+    }
+
+    .faq-item.active p { display: block; }
+
+    .faq-toggle {
+      font-size: 1.4rem;
+      color: var(--teal);
+      transition: transform 0.2s;
+      font-weight: 300;
+    }
+
+    .faq-item.active .faq-toggle { transform: rotate(45deg); }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--light-blue), #e8f4f8);
+      padding: 5rem 4rem;
+      text-align: center;
+      border-radius: 16px;
+      margin: 4rem 0;
+    }
+
+    .cta-section h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 2.2rem;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .cta-section p {
+      font-size: 1.05rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--charcoal);
+      color: white;
+      padding: 4rem 4rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .footer-section h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      color: var(--teal);
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .footer-section a:hover { color: var(--teal); }
+
+    .footer-bottom {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width: 768px) {
+      nav { padding: 0.8rem 1.5rem; height: 60px; }
+      .nav-links { gap: 1.5rem; font-size: 0.85rem; }
+      .hero { padding: 100px 1.5rem 3rem; }
+      .hero h1 { font-size: 2rem; }
+      .section { padding: 3rem 1.5rem; }
+      .cta-section { padding: 3rem 1.5rem; }
+      .footer { padding: 2rem 1.5rem 1rem; }
+      .courses-grid { grid-template-columns: 1fr; }
+      .course-card.featured { transform: scale(1); }
+      .hero-stats { flex-direction: column; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">ASPT Prep</a>
+  <ul class="nav-links">
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#features">Why Us</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="access.html" class="nav-cta">Access Course</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Trusted by Healthcare Students</div>
+    <h1>Pass Your <span class="hero-highlight">ASPT Certification</span> on Your First Try</h1>
+    <p>Expert-led courses for Phlebotomy, EKG, Patient Care, and Medical Assistant certifications. Interactive modules, 650+ practice questions, real-world scenarios.</p>
+    <div class="hero-cta">
+      <a href="#courses" class="btn-primary">Explore Courses</a>
+      <a href="access.html" class="btn-secondary">Already Enrolled</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-value">24</div>
+        <div class="stat-label">Expert Modules</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">650+</div>
+        <div class="stat-label">Practice Questions</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">4</div>
+        <div class="stat-label">Certification Tracks</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="courses" class="section">
+  <div class="section-tag">Choose Your Track</div>
+  <h2 class="section-title">ASPT Certification Courses</h2>
+  <p class="section-desc">Start with one course or master all four certifications. Each track includes interactive modules, quizzes, and a full-length practice exam.</p>
+
+  <div class="courses-grid">
+    <div class="course-card">
+      <span class="course-icon">🩸</span>
+      <h3>Phlebotomy Technician</h3>
+      <p>Master venipuncture, specimen handling, safety protocols, and patient care essentials.</p>
+      <div class="course-meta">10 Modules • 150+ Questions</div>
+      <div class="course-price">$99</div>
+      <button class="btn-enroll" onclick="goToAccess('phlebotomy')">Enroll Now</button>
+    </div>
+
+    <div class="course-card">
+      <span class="course-icon">📊</span>
+      <h3>EKG Technician</h3>
+      <p>Learn cardiac anatomy, equipment operation, rhythm interpretation, and electrode placement.</p>
+      <div class="course-meta">7 Modules • 150+ Questions</div>
+      <div class="course-price">$99</div>
+      <button class="btn-enroll" onclick="goToAccess('ekg')">Enroll Now</button>
+    </div>
+
+    <div class="course-card">
+      <span class="course-icon">🏥</span>
+      <h3>Patient Care Technician</h3>
+      <p>Patient communication, vital signs, hygiene, mobility assistance, and clinical skills.</p>
+      <div class="course-meta">3 Modules • 150+ Questions</div>
+      <div class="course-price">$99</div>
+      <button class="btn-enroll" onclick="goToAccess('pct')">Enroll Now</button>
+    </div>
+
+    <div class="course-card">
+      <span class="course-icon">📋</span>
+      <h3>Medical Assistant</h3>
+      <p>Medical office administration, clinical procedures, pharmacology, and professional standards.</p>
+      <div class="course-meta">4 Modules • 200+ Questions</div>
+      <div class="course-price">$99</div>
+      <button class="btn-enroll" onclick="goToAccess('cma')">Enroll Now</button>
+    </div>
+
+    <div class="course-card featured">
+      <span class="course-icon">🎓</span>
+      <h3>Complete Bundle</h3>
+      <p>All four certifications in one comprehensive program. Perfect for career advancement.</p>
+      <div class="course-meta">24 Modules • 650+ Questions</div>
+      <div class="course-price">$249<small>Save $147</small></div>
+      <button class="btn-enroll" onclick="goToAccess('bundle')">Enroll Now</button>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="section">
+  <div class="section-tag">Why Choose Us</div>
+  <h2 class="section-title">Built for Your Success</h2>
+  <p class="section-desc">Everything you need to pass confidently on your first attempt.</p>
+
+  <div class="features-grid">
+    <div class="feature">
+      <div class="feature-icon">📚</div>
+      <div>
+        <h4>Interactive Learning</h4>
+        <p>Layman's language explanations with real-world clinical scenarios you'll actually encounter.</p>
+      </div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">✓</div>
+      <div>
+        <h4>Expert-Created Content</h4>
+        <p>Designed by Dr. Ornella Oluwole, board-certified anesthesiologist with 10+ years teaching experience.</p>
+      </div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">🎯</div>
+      <div>
+        <h4>Spaced Repetition</h4>
+        <p>Concepts reinforced throughout modules for better retention and long-term mastery.</p>
+      </div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">⚡</div>
+      <div>
+        <h4>650+ Practice Questions</h4>
+        <p>Exam-style questions with detailed explanations. Immediate feedback on every answer.</p>
+      </div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">🏆</div>
+      <div>
+        <h4>Full-Length Exams</h4>
+        <p>Realistic practice tests that mirror the actual ASPT certification format exactly.</p>
+      </div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">♾️</div>
+      <div>
+        <h4>Lifetime Access</h4>
+        <p>Study at your own pace, revisit material anytime. Your courses are always available.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="author-section">
+    <h3>Taught by Dr. Ornella Oluwole</h3>
+    <p>Board-certified anesthesiologist with deep expertise in healthcare education. Every concept is explained clearly without medical jargon. This course is built from real clinical experience, not just textbooks.</p>
+    <div class="author-cred">MD • Board-Certified Anesthesiologist • Healthcare Educator</div>
+  </div>
+</section>
+
+<section id="faq" class="section">
+  <div class="section-tag">Common Questions</div>
+  <h2 class="section-title">Frequently Asked Questions</h2>
+
+  <div class="faq-list">
+    <div class="faq-item active">
+      <h4>
+        <span>How do I access my course after purchase?</span>
+        <span class="faq-toggle">+</span>
+      </h4>
+      <p>After purchase, you'll receive an access code via email. Enter it on our login page to unlock all your courses immediately. Study on any device, anytime.</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>
+        <span>Can I buy individual courses or just the bundle?</span>
+        <span class="faq-toggle">+</span>
+      </h4>
+      <p>Both! Purchase any single course ($99) or the complete bundle of all four ($249) at the best value. The bundle saves you $147 compared to individual purchases.</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>
+        <span>Do I have lifetime access?</span>
+        <span class="faq-toggle">+</span>
+      </h4>
+      <p>Yes! Once purchased, your course is yours forever. Revisit material anytime, update your notes, and study at your own pace with no time limits.</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>
+        <span>What if I don't pass the exam?</span>
+        <span class="faq-toggle">+</span>
+      </h4>
+      <p>We're confident in our course quality. If you don't pass after completing the course, contact us. We'll provide additional support or discuss a refund.</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>
+        <span>How long does it take to complete a course?</span>
+        <span class="faq-toggle">+</span>
+      </h4>
+      <p>Most students complete a single track in 4-8 weeks studying 5-10 hours per week. The bundle typically takes 12-16 weeks. You set the pace.</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>
+        <span>Are the courses mobile-friendly?</span>
+        <span class="faq-toggle">+</span>
+      </h4>
+      <p>Absolutely. Study on phone, tablet, or desktop. Our platform is fully responsive and works seamlessly on any device.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section section">
+  <h2>Ready to Get Certified?</h2>
+  <p>Join hundreds of students who have passed their ASPT certification on the first try.</p>
+  <a href="#courses" class="btn-primary">Choose Your Course</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h4>Courses</h4>
+      <ul>
+        <li><a href="#courses">Phlebotomy</a></li>
+        <li><a href="#courses">EKG</a></li>
+        <li><a href="#courses">Patient Care</a></li>
+        <li><a href="#courses">Medical Assistant</a></li>
+        <li><a href="#courses">Bundle</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="access.html">Access Course</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Refund Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 ASPT Exam Prep. All rights reserved. | Dr. Ornella Oluwole</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-item h4').forEach(item => {
+    item.addEventListener('click', function() {
+      const parent = this.parentElement;
+      document.querySelectorAll('.faq-item').forEach(el => {
+        if (el !== parent) el.classList.remove('active');
+      });
+      parent.classList.toggle('active');
+    });
+  });
+
+  function goToAccess(courseType) {
+    window.location.href = `access.html?course=${courseType}`;
+  }
+</script>
+
+</body>
+</html>

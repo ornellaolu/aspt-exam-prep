@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phlebotomy Technician Course | ASPT Prep</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage: #2D5A3D;
+      --terracotta: #C8845A;
+      --charcoal: #1C1C1C;
+      --ivory: #FAF0E8;
+      --light-gray: #f5f5f5;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--light-gray);
+      color: var(--charcoal);
+    }
+
+    /* NAV */
+    nav {
+      background: white;
+      border-bottom: 1px solid rgba(45,90,61,0.1);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--sage);
+      text-decoration: none;
+    }
+
+    .course-title {
+      font-size: 0.9rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .progress-mini {
+      font-size: 0.8rem;
+      color: var(--terracotta);
+      font-weight: 700;
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-back {
+      background: transparent;
+      border: 1px solid var(--sage);
+      color: var(--sage);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-back:hover { background: rgba(45,90,61,0.05); }
+
+    /* LAYOUT */
+    .container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 0;
+      min-height: calc(100vh - 60px);
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      background: white;
+      border-right: 1px solid rgba(45,90,61,0.1);
+      overflow-y: auto;
+      max-height: calc(100vh - 60px);
+    }
+
+    .sidebar-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(45,90,61,0.1);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--sage);
+      letter-spacing: 0.08em;
+    }
+
+    .modules-list {
+      list-style: none;
+    }
+
+    .module-item {
+      padding: 0;
+      border-bottom: 1px solid rgba(45,90,61,0.05);
+    }
+
+    .module-btn {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: transparent;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #666;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .module-btn:hover { background: rgba(45,90,61,0.05); color: var(--sage); }
+
+    .module-btn.active {
+      background: rgba(200,132,90,0.1);
+      color: var(--terracotta);
+      font-weight: 600;
+      border-left: 3px solid var(--terracotta);
+      padding-left: calc(1.5rem - 3px);
+    }
+
+    .module-btn.completed::after {
+      content: "✓";
+      position: absolute;
+      right: 1rem;
+      color: #28a745;
+      font-weight: 700;
+    }
+
+    /* MAIN */
+    .main {
+      padding: 3rem;
+      overflow-y: auto;
+      max-height: calc(100vh - 60px);
+    }
+
+    .content {
+      background: white;
+      border-radius: 12px;
+      padding: 3rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      max-width: 900px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--sage);
+      margin-bottom: 1rem;
+    }
+
+    .module-meta {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(45,90,61,0.1);
+    }
+
+    .meta-item {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .meta-item strong { color: var(--sage); }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--sage);
+      margin: 2rem 0 1rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      color: var(--charcoal);
+      margin: 1.5rem 0 0.8rem;
+      font-weight: 600;
+    }
+
+    p { line-height: 1.8; margin: 1rem 0; color: #333; }
+
+    ul, ol { margin: 1rem 0 1rem 2rem; }
+    li { margin: 0.5rem 0; line-height: 1.7; }
+
+    .highlight {
+      background: #fff3cd;
+      padding: 1.5rem;
+      border-left: 4px solid #ffc107;
+      border-radius: 6px;
+      margin: 1.5rem 0;
+    }
+
+    .example-box {
+      background: #f0f8ff;
+      padding: 1.5rem;
+      border-left: 4px solid #2D5A3D;
+      border-radius: 6px;
+      margin: 1.5rem 0;
+      font-style: italic;
+    }
+
+    .key-points {
+      background: #d4edda;
+      padding: 1.5rem;
+      border-left: 4px solid #28a745;
+      border-radius: 6px;
+      margin: 2rem 0;
+    }
+
+    .key-points li { margin: 0.6rem 0; }
+
+    /* QUIZ */
+    .quiz-section {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--terracotta);
+    }
+
+    .quiz-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--sage);
+      margin-bottom: 1rem;
+    }
+
+    .quiz-intro {
+      background: rgba(200,132,90,0.05);
+      padding: 1rem;
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .question-block {
+      background: #f9f9f9;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+      border: 1px solid rgba(45,90,61,0.1);
+    }
+
+    .question-num {
+      font-weight: 700;
+      color: var(--terracotta);
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .question-text {
+      font-weight: 600;
+      margin: 0.8rem 0;
+      font-size: 1rem;
+    }
+
+    .options {
+      margin: 1.2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .option {
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(45,90,61,0.2);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: white;
+    }
+
+    .option:hover {
+      background: rgba(45,90,61,0.05);
+      border-color: var(--terracotta);
+    }
+
+    .option input[type="radio"] { margin-right: 0.8rem; }
+
+    .option label {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .answer-feedback {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 6px;
+      display: none;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .answer-feedback.show { display: block; }
+
+    .correct {
+      background: #d4edda;
+      border-left: 4px solid #28a745;
+      color: #155724;
+    }
+
+    .incorrect {
+      background: #f8d7da;
+      border-left: 4px solid #dc3545;
+      color: #721c24;
+    }
+
+    /* BUTTONS */
+    .btn-submit {
+      background: var(--sage);
+      color: white;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      margin-top: 1rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .btn-submit:hover { background: #1a3a25; }
+
+    .nav-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      justify-content: space-between;
+    }
+
+    .btn-nav {
+      flex: 1;
+      padding: 0.8rem 1.5rem;
+      border: 1px solid var(--sage);
+      background: white;
+      color: var(--sage);
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-nav:hover { background: var(--sage); color: white; }
+    .btn-nav:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-next {
+      background: var(--sage);
+      color: white;
+    }
+
+    .quiz-result {
+      background: #d4edda;
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      margin: 1.5rem 0;
+      display: none;
+    }
+
+    .quiz-result.show { display: block; }
+
+    .quiz-result h3 { color: #155724; margin-bottom: 0.5rem; }
+    .quiz-result p { color: #155724; }
+
+    @media(max-width: 1024px) {
+      .container { grid-template-columns: 200px 1fr; }
+      .sidebar { max-height: calc(100vh - 60px); }
+      .main { padding: 2rem; }
+      .content { padding: 2rem; }
+    }
+
+    @media(max-width: 768px) {
+      .container { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      nav { flex-direction: column; gap: 1rem; }
+      .main { padding: 1rem; }
+      .content { padding: 1.5rem; }
+      h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="/" class="nav-logo">ASPT Prep</a>
+    <div>
+      <div class="course-title">🩸 Phlebotomy Technician</div>
+      <div class="progress-mini">Progress: <span id="navProgress">0</span>%</div>
+    </div>
+  </div>
+  <div class="nav-right">
+    <a href="../dashboard.html" class="btn-back">← Back to Dashboard</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="sidebar">
+    <div class="sidebar-header">Modules</div>
+    <ul class="modules-list" id="modulesList"></ul>
+  </div>
+
+  <div class="main">
+    <div class="content" id="content"></div>
+  </div>
+</div>
+
+<script>
+  const COURSE_DATA = {
+    modules: [
+      {
+        id: 1,
+        title: "Introduction to Phlebotomy & the Healthcare System",
+        sections: [
+          { type: "objectives", content: ["Understand the role and responsibilities of a phlebotomy technician", "Identify different healthcare settings where phlebotomists work", "Recognize the importance of professional certification", "Grasp medical terminology basics used in healthcare", "Understand legal and ethical responsibilities in patient care"] },
+          { type: "heading", content: "What is a Phlebotomist? Your Role in Healthcare" },
+          { type: "text", content: "A <strong>phlebotomist</strong> is a healthcare professional trained to draw blood from patients. Think of yourself as a bridge between the patient and the laboratory—your job is to safely collect blood specimens that doctors and lab technicians use to diagnose and monitor diseases." },
+          { type: "text", content: "<strong>Your main responsibilities include:</strong>" },
+          { type: "list", content: ["Safely drawing blood from patients using needles or lancets", "Labeling specimens correctly so they don't get mixed up", "Following strict safety protocols to protect yourself and patients", "Communicating calmly with anxious or nervous patients", "Maintaining accurate records of what blood was drawn and when"] },
+          { type: "text", content: "<strong>The scope of practice</strong> means knowing exactly what you can and cannot do. As a phlebotomist, you draw blood—that's your specialty. You don't diagnose diseases, you don't interpret lab results, and you don't advise patients on their medical conditions. But you ARE responsible for making sure the specimen is collected properly, because if you mess this up, the entire lab result becomes unreliable." },
+          { type: "highlight", content: "<strong>Real-world example:</strong> Imagine a doctor orders a blood test to check a patient's cholesterol. If you don't mix the tube properly after drawing blood, the specimen might clot or separate incorrectly. The lab will reject it, and the patient will need to come back for another draw. That's why accuracy matters in every single step." }
+        ],
+        quiz: [
+          { q: "A phlebotomist's primary role is to:", opts: ["A) Diagnose diseases based on blood samples", "B) Safely collect blood specimens for testing", "C) Interpret laboratory results for patients", "D) Administer medication to patients"], correct: 1, exp: "Phlebotomists collect blood. Pathologists and lab technicians interpret results, and doctors diagnose diseases." },
+          { q: "Your scope of practice as a phlebotomist includes:", opts: ["A) Diagnosing patient conditions", "B) Interpreting lab results", "C) Safely drawing blood specimens", "D) Advising patients on medical treatment"], correct: 2, exp: "Only blood collection is within your scope. Other tasks require different healthcare credentials." }
+        ]
+      },
+      {
+        id: 2,
+        title: "Anatomy & Physiology: The Circulatory System",
+        sections: [
+          { type: "heading", content: "Understanding Blood Vessels" },
+          { type: "text", content: "To draw blood safely, you need to understand the circulatory system. Blood travels through three main types of blood vessels: arteries, capillaries, and veins." }
+        ],
+        quiz: []
+      }
+    ],
+    practiceExam: []
+  };
+
+  let currentModule = 0;
+
+  function initCourse() {
+    renderModulesList();
+    renderModule(0);
+    updateProgress();
+  }
+
+  function renderModulesList() {
+    const list = document.getElementById('modulesList');
+    list.innerHTML = '';
+
+    COURSE_DATA.modules.forEach((mod, idx) => {
+      const li = document.createElement('li');
+      li.className = 'module-item';
+
+      const btn = document.createElement('button');
+      btn.className = 'module-btn';
+      if (idx === currentModule) btn.classList.add('active');
+      if (isModuleCompleted(idx)) btn.classList.add('completed');
+
+      btn.textContent = `Module ${mod.id}: ${mod.title}`;
+      btn.onclick = () => selectModule(idx);
+
+      li.appendChild(btn);
+      list.appendChild(li);
+    });
+  }
+
+  function selectModule(idx) {
+    currentModule = idx;
+    renderModulesList();
+    renderModule(idx);
+    document.querySelector('.main').scrollTop = 0;
+  }
+
+  function renderModule(idx) {
+    const mod = COURSE_DATA.modules[idx];
+    const html = document.getElementById('content');
+
+    let output = `
+      <h1>${mod.title}</h1>
+      <div class="module-meta">
+        <div class="meta-item"><strong>Module:</strong> ${mod.id} of ${COURSE_DATA.modules.length}</div>
+        <div class="meta-item"><strong>Progress:</strong> <span id="moduleProgress">0</span>%</div>
+      </div>
+    `;
+
+    mod.sections.forEach(sec => {
+      if (sec.type === 'objectives') {
+        output += '<div class="highlight"><strong>Learning Objectives</strong><ul>';
+        sec.content.forEach(obj => output += `<li>${obj}</li>`);
+        output += '</ul></div>';
+      } else if (sec.type === 'heading') {
+        output += `<h2>${sec.content}</h2>`;
+      } else if (sec.type === 'text') {
+        output += `<p>${sec.content}</p>`;
+      } else if (sec.type === 'list') {
+        output += '<ul>';
+        sec.content.forEach(item => output += `<li>${item}</li>`);
+        output += '</ul>';
+      } else if (sec.type === 'highlight') {
+        output += `<div class="example-box">${sec.content}</div>`;
+      }
+    });
+
+    if (mod.quiz.length > 0) {
+      output += `<div class="quiz-section"><h2 class="quiz-title">Module Quiz</h2>
+        <div class="quiz-intro">You must score 70% to complete this module. Good luck!</div>`;
+
+      mod.quiz.forEach((q, qidx) => {
+        output += `
+          <div class="question-block">
+            <div class="question-num">Question ${qidx + 1}</div>
+            <div class="question-text">${q.q}</div>
+            <div class="options" id="q${qidx}">
+              ${q.opts.map((opt, oidx) => `
+                <div class="option">
+                  <label>
+                    <input type="radio" name="q${qidx}" value="${oidx}">
+                    ${opt}
+                  </label>
+                </div>
+              `).join('')}
+            </div>
+            <div class="answer-feedback" id="feedback${qidx}"></div>
+          </div>
+        `;
+      });
+
+      output += `
+        <button class="btn-submit" onclick="submitQuiz(${idx})">Submit Quiz</button>
+        <div class="quiz-result" id="quizResult"></div>
+      `;
+      output += '</div>';
+    }
+
+    output += `
+      <div class="nav-buttons">
+        <button class="btn-nav" onclick="selectModule(${idx - 1})" ${idx === 0 ? 'disabled' : ''}>← Previous Module</button>
+        <button class="btn-nav btn-next" onclick="selectModule(${idx + 1})" ${idx === COURSE_DATA.modules.length - 1 ? 'disabled' : ''}>Next Module →</button>
+      </div>
+    `;
+
+    html.innerHTML = output;
+  }
+
+  function submitQuiz(moduleIdx) {
+    const mod = COURSE_DATA.modules[moduleIdx];
+    let score = 0;
+
+    mod.quiz.forEach((q, idx) => {
+      const selected = document.querySelector(`input[name="q${idx}"]:checked`);
+      const feedback = document.getElementById(`feedback${idx}`);
+
+      if (selected && parseInt(selected.value) === q.correct) {
+        score++;
+        feedback.className = 'answer-feedback show correct';
+        feedback.innerHTML = `<strong>✓ Correct!</strong> ${q.exp}`;
+      } else {
+        feedback.className = 'answer-feedback show incorrect';
+        feedback.innerHTML = `<strong>✗ Incorrect.</strong> ${q.exp}`;
+      }
+    });
+
+    const percentage = Math.round((score / mod.quiz.length) * 100);
+    const result = document.getElementById('quizResult');
+
+    if (percentage >= 70) {
+      result.className = 'quiz-result show';
+      result.innerHTML = `<h3>Great Job! You Passed! 🎉</h3><p>Score: ${percentage}%</p>`;
+      markModuleCompleted(moduleIdx);
+      updateProgress();
+    } else {
+      result.className = 'quiz-result show incorrect';
+      result.innerHTML = `<h3>Score: ${percentage}%</h3><p>You need 70% to pass. Review the material and try again!</p>`;
+    }
+
+    document.querySelector('.main').scrollTop = document.getElementById('quizResult').offsetTop - 200;
+  }
+
+  function markModuleCompleted(idx) {
+    localStorage.setItem(`phlebotomy_mod_${idx}`, 'true');
+  }
+
+  function isModuleCompleted(idx) {
+    return localStorage.getItem(`phlebotomy_mod_${idx}`) === 'true';
+  }
+
+  function updateProgress() {
+    const total = COURSE_DATA.modules.length;
+    let completed = 0;
+
+    for (let i = 0; i < total; i++) {
+      if (isModuleCompleted(i)) completed++;
+    }
+
+    const percent = Math.round((completed / total) * 100);
+    document.getElementById('navProgress').textContent = percent;
+    localStorage.setItem('progress_phlebotomy', percent);
+  }
+
+  window.addEventListener('load', initCourse);
+</script>
+
+</body>
+</html>

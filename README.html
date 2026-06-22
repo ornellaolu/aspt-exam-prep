@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASPT Prep Website - Setup Guide</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.8;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px;
+      background: #f5f5f5;
+      color: #333;
+    }
+    .container { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+    h1 { color: #2D5A3D; border-bottom: 3px solid #C8845A; padding-bottom: 15px; }
+    h2 { color: #2D5A3D; margin-top: 30px; }
+    h3 { color: #C8845A; }
+    code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+    .file-list { background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0; }
+    .file-list ul { margin: 10px 0; padding-left: 20px; }
+    .step { background: #f0f8ff; padding: 20px; border-left: 4px solid #2D5A3D; margin: 20px 0; border-radius: 5px; }
+    .warning { background: #fff3cd; padding: 20px; border-left: 4px solid #ff9800; margin: 20px 0; border-radius: 5px; }
+    .success { background: #d4edda; padding: 20px; border-left: 4px solid #28a745; margin: 20px 0; border-radius: 5px; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background: #2D5A3D; color: white; }
+    .code-block { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; overflow-x: auto; margin: 15px 0; font-family: 'Courier New', monospace; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>ASPT Prep Website - Setup & Deployment Guide</h1>
+
+<h2>📁 What You Have</h2>
+
+<div class="file-list">
+  <strong>Core Files Created:</strong>
+  <ul>
+    <li><code>index.html</code> — Landing page (selling page with all courses)</li>
+    <li><code>access.html</code> — Login page (students enter their code)</li>
+    <li><code>dashboard.html</code> — Student hub (shows enrolled courses)</li>
+    <li><code>codes.json</code> — Access codes list (you manage this)</li>
+    <li><code>README.html</code> — This file</li>
+  </ul>
+
+  <strong>Next: You'll Need to Create</strong>
+  <ul>
+    <li><code>courses/phlebotomy.html</code> — Phlebotomy course content</li>
+    <li><code>courses/ekg.html</code> — EKG course content</li>
+    <li><code>courses/pct.html</code> — PCT course content</li>
+    <li><code>courses/cma.html</code> — CMA course content</li>
+  </ul>
+</div>
+
+<h2>💰 Pricing (Final)</h2>
+
+<table>
+  <tr>
+    <th>Course</th>
+    <th>Price</th>
+    <th>Access Type</th>
+  </tr>
+  <tr>
+    <td>Phlebotomy Technician</td>
+    <td>$99</td>
+    <td>Single Track</td>
+  </tr>
+  <tr>
+    <td>EKG Technician</td>
+    <td>$99</td>
+    <td>Single Track</td>
+  </tr>
+  <tr>
+    <td>Patient Care Technician</td>
+    <td>$99</td>
+    <td>Single Track</td>
+  </tr>
+  <tr>
+    <td>Certified Medical Assistant</td>
+    <td>$99</td>
+    <td>Single Track</td>
+  </tr>
+  <tr>
+    <td>Complete Bundle (All 4)</td>
+    <td>$249</td>
+    <td>All Tracks</td>
+  </tr>
+</table>
+
+<h2>🔐 How Access Codes Work</h2>
+
+<h3>1. System Overview</h3>
+<p>When a student purchases a course, you:</p>
+<ol>
+  <li>Generate a unique access code (e.g., <code>PHLEB-12345</code>)</li>
+  <li>Add it to <code>codes.json</code> with what they purchased</li>
+  <li>Send the code to them via email</li>
+  <li>They enter it on <code>access.html</code> to unlock their courses</li>
+</ol>
+
+<h3>2. Creating Access Codes</h3>
+<p>Format: <code>TRACKTYPE-RANDOMNUMBER</code></p>
+<p>Examples:</p>
+<div class="code-block">
+PHLEB-50298    (for Phlebotomy only)
+EKG-49201      (for EKG only)
+PCT-51832      (for PCT only)
+CMA-48921      (for CMA only)
+BUNDLE-50102   (for all 4 tracks)
+</div>
+
+<h3>3. Adding Codes to codes.json</h3>
+<p>When a student purchases Phlebotomy ($99):</p>
+<div class="code-block">
+"PHLEB-50298": {
+  "access": ["phlebotomy"],
+  "studentName": "John Smith",
+  "purchased": "2026-06-18"
+}
+</div>
+
+<p>When a student purchases Bundle ($249):</p>
+<div class="code-block">
+"BUNDLE-50102": {
+  "access": ["phlebotomy", "ekg", "pct", "cma"],
+  "studentName": "Jane Doe",
+  "purchased": "2026-06-18"
+}
+</div>
+
+<h2>🚀 Deployment to Vercel</h2>
+
+<div class="step">
+  <strong>Step 1: Prepare Your Files</strong>
+  <p>Make sure all files are in <code>/Users/ornellaoluwole/ASPT_Website/</code></p>
+  <ul>
+    <li>index.html</li>
+    <li>access.html</li>
+    <li>dashboard.html</li>
+    <li>codes.json</li>
+    <li>courses/ folder (with your course files)</li>
+  </ul>
+</div>
+
+<div class="step">
+  <strong>Step 2: Buy a Domain</strong>
+  <p>Go to Namecheap, GoDaddy, or Route53 and buy a domain. Suggestions:</p>
+  <ul>
+    <li>asptcertified.com</li>
+    <li>asptmasterclass.com</li>
+    <li>asptexamprep.com</li>
+    <li>phlebotomyexamprep.com</li>
+  </ul>
+  <p><strong>Cost:</strong> $10-15/year for most domains</p>
+</div>
+
+<div class="step">
+  <strong>Step 3: Create Vercel Account</strong>
+  <ol>
+    <li>Go to <strong>vercel.com</strong></li>
+    <li>Sign up with GitHub, GitLab, or email</li>
+    <li>Click "Import Project"</li>
+    <li>Point to your <code>ASPT_Website</code> folder (via GitHub or direct upload)</li>
+    <li>Deploy!</li>
+  </ol>
+  <p><strong>Cost:</strong> Free (generous free tier)</p>
+</div>
+
+<div class="step">
+  <strong>Step 4: Connect Domain</strong>
+  <ol>
+    <li>In Vercel: Settings → Domains</li>
+    <li>Add your domain</li>
+    <li>Update DNS records (Vercel will show you how)</li>
+    <li>Wait ~24 hours for DNS to propagate</li>
+  </ol>
+</div>
+
+<h2>📝 How to Manage Access Codes</h2>
+
+<h3>Scenario 1: Student Purchases Phlebotomy ($99)</h3>
+<ol>
+  <li>Generate code: <code>PHLEB-50298</code></li>
+  <li>Open <code>codes.json</code></li>
+  <li>Add:
+    <div class="code-block">
+"PHLEB-50298": {
+  "access": ["phlebotomy"],
+  "studentName": "John Smith",
+  "purchased": "2026-06-18"
+}</div>
+  </li>
+  <li>Save file</li>
+  <li>Send email: "Your code is: PHLEB-50298"</li>
+</ol>
+
+<h3>Scenario 2: Student Purchases Bundle ($249)</h3>
+<ol>
+  <li>Generate code: <code>BUNDLE-50102</code></li>
+  <li>Open <code>codes.json</code></li>
+  <li>Add:
+    <div class="code-block">
+"BUNDLE-50102": {
+  "access": ["phlebotomy", "ekg", "pct", "cma"],
+  "studentName": "Jane Doe",
+  "purchased": "2026-06-18"
+}</div>
+  </li>
+  <li>Save file</li>
+  <li>Send email: "Your code is: BUNDLE-50102"</li>
+</ol>
+
+<h2>📧 Student Email Template</h2>
+
+<div class="code-block">
+Subject: Your ASPT Prep Course Access Code
+
+Hi [Student Name],
+
+Thank you for purchasing the [Course Name]!
+
+Your access code is: PHLEB-50298
+
+How to access your course:
+1. Go to www.yoursite.com
+2. Click "Access Course"
+3. Enter your code above
+4. Start learning!
+
+Your code gives you:
+✓ Lifetime access
+✓ All course materials
+✓ Practice exams
+✓ Mobile access anytime
+
+Questions? Reply to this email.
+
+Best,
+Dr. Ornella Oluwole
+ASPT Certification Prep
+</div>
+
+<h2>🔄 Updating Codes After Deployment</h2>
+
+<p>After you deploy to Vercel:</p>
+<ol>
+  <li>Make changes to <code>codes.json</code> locally</li>
+  <li>Commit and push to GitHub (or re-upload to Vercel)</li>
+  <li>Vercel auto-deploys in ~2 minutes</li>
+  <li>Students can use new codes immediately</li>
+</ol>
+
+<div class="warning">
+  <strong>⚠️ Important:</strong> Each time you add a code, you must commit/push the change. Vercel won't automatically sync local file changes.
+</div>
+
+<h2>📊 Tracking Students</h2>
+
+<p>Keep a spreadsheet to track:</p>
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Student Name</th>
+    <th>Email</th>
+    <th>Course</th>
+    <th>Price</th>
+    <th>Date Purchased</th>
+  </tr>
+  <tr>
+    <td>PHLEB-50298</td>
+    <td>John Smith</td>
+    <td>john@email.com</td>
+    <td>Phlebotomy</td>
+    <td>$99</td>
+    <td>2026-06-18</td>
+  </tr>
+  <tr>
+    <td>BUNDLE-50102</td>
+    <td>Jane Doe</td>
+    <td>jane@email.com</td>
+    <td>Bundle (All 4)</td>
+    <td>$249</td>
+    <td>2026-06-18</td>
+  </tr>
+</table>
+
+<h2>🎓 Next Steps: Building Course Content</h2>
+
+<p>You need to create 4 course files:</p>
+
+<h3>For each course (phlebotomy.html, ekg.html, pct.html, cma.html):</h3>
+<ul>
+  <li>Display all modules for that track</li>
+  <li>Show interactive content (from your Module files)</li>
+  <li>Include quizzes with immediate feedback</li>
+  <li>Track progress (localStorage)</li>
+  <li>Module navigation (prev/next)</li>
+  <li>Mark modules complete</li>
+</ul>
+
+<p><strong>Example structure for phlebotomy.html:</strong></p>
+<div class="code-block">
+Module 1: Introduction to Phlebotomy
+├─ Content (from PHLEBOTOMY_Module_01.md)
+├─ Quiz (15 questions)
+└─ Next Button
+
+Module 2: Anatomy & Physiology
+├─ Content
+├─ Quiz
+└─ Next Button
+
+[... and so on for 10 modules]
+
+Full-Length Practice Exam
+├─ 150 questions
+├─ Timed (90 min)
+└─ Score report
+</div>
+
+<h2>💡 Important Notes</h2>
+
+<div class="success">
+  <strong>✓ Static Site Benefits:</strong>
+  <ul>
+    <li>No backend needed - just files</li>
+    <li>Lightning fast</li>
+    <li>Extremely cheap to host (Vercel free tier)</li>
+    <li>Easy to update (just edit files, commit to GitHub)</li>
+    <li>Secure - no database to hack</li>
+  </ul>
+</div>
+
+<div class="warning">
+  <strong>⚠️ Know Your Limitations:</strong>
+  <ul>
+    <li>Can't accept payments directly (use Stripe, Gumroad, or PayPal separately)</li>
+    <li>All codes are static in JSON (but that's fine for your use case)</li>
+    <li>No real-time student management dashboard (but you can manually track in a spreadsheet)</li>
+  </ul>
+</div>
+
+<h2>🎯 Your Action Items</h2>
+
+<ol>
+  <li>✅ Core website created (index, access, dashboard)</li>
+  <li>⏳ <strong>Create course content files</strong> (courses/phlebotomy.html, etc.)</li>
+  <li>⏳ <strong>Buy domain name</strong> (asptcertified.com or similar)</li>
+  <li>⏳ <strong>Create Vercel account & deploy</strong></li>
+  <li>⏳ <strong>Set up payment system</strong> (Gumroad, Stripe, or PayPal)</li>
+  <li>⏳ <strong>Generate & manage access codes</strong> as students purchase</li>
+  <li>⏳ <strong>Email students their codes</strong> after purchase</li>
+</ol>
+
+<h2>📞 Support</h2>
+
+<p>If you need help:</p>
+<ul>
+  <li><strong>Vercel Docs:</strong> vercel.com/docs</li>
+  <li><strong>GitHub Setup:</strong> github.com/docs</li>
+  <li><strong>Domain Setup:</strong> Your registrar's documentation</li>
+</ul>
+
+<hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
+
+<p style="text-align: center; color: #999; font-size: 0.9rem;">
+  ASPT Certification Prep Website<br>
+  Created by Dr. Ornella Oluwole<br>
+  Ready to deploy and start selling
+</p>
+
+</div>
+
+</body>
+</html>

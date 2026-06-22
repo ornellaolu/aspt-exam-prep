@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Courses | ASPT Certification Prep</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage: #2D5A3D;
+      --terracotta: #C8845A;
+      --charcoal: #1C1C1C;
+      --ivory: #FAF0E8;
+      --warm-white: #F5E4D4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { overflow-x: hidden; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--ivory);
+      color: var(--charcoal);
+      min-height: 100vh;
+    }
+
+    /* ── NAVIGATION ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: white;
+      border-bottom: 1px solid rgba(200,132,90,0.1);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--sage);
+      text-decoration: none;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-student-name {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .btn-logout {
+      background: var(--terracotta);
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .btn-logout:hover { background: #a06a40; }
+
+    /* ── MAIN CONTENT ── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .header {
+      margin-bottom: 3rem;
+    }
+
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .header p {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    /* ── COURSES GRID ── */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .course-card {
+      background: white;
+      border: 1px solid rgba(45,90,61,0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .course-card:hover {
+      border-color: var(--terracotta);
+      box-shadow: 0 8px 20px rgba(200,132,90,0.15);
+      transform: translateY(-2px);
+    }
+
+    .course-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .course-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .course-card p {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .progress-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .progress-label {
+      font-size: 0.8rem;
+      color: #999;
+      margin-bottom: 0.4rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(45,90,61,0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--sage), var(--terracotta));
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    .btn-start {
+      background: var(--sage);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: 'DM Sans', sans-serif;
+      width: 100%;
+    }
+
+    .btn-start:hover { background: #1a3a25; }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      background: white;
+      border-radius: 12px;
+      border: 1px solid rgba(45,90,61,0.1);
+    }
+
+    .empty-state h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--charcoal);
+    }
+
+    .empty-state p {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-back {
+      background: var(--terracotta);
+      color: white;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      display: inline-block;
+    }
+
+    .btn-back:hover { background: #a06a40; }
+
+    .course-details {
+      font-size: 0.85rem;
+      color: #999;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(45,90,61,0.1);
+    }
+
+    .module-count {
+      font-weight: 600;
+      color: var(--sage);
+    }
+
+    @media(max-width: 768px) {
+      nav { padding: 0 1rem; }
+      .nav-right { gap: 1rem; }
+      .container { padding: 2rem 1rem; }
+      .courses-grid { grid-template-columns: 1fr; }
+      .header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">ASPT Prep</a>
+  <div class="nav-right">
+    <div class="nav-student-name" id="studentName">Student</div>
+    <button class="btn-logout" onclick="logout()">Logout</button>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="header">
+    <h1>Your Courses</h1>
+    <p>Choose a course to start learning. Study at your own pace.</p>
+  </div>
+
+  <div class="courses-grid" id="coursesGrid">
+    <!-- Populated by JavaScript -->
+  </div>
+</div>
+
+<script>
+  const COURSE_DATA = {
+    phlebotomy: {
+      icon: '🩸',
+      title: 'Phlebotomy Technician',
+      desc: 'Master blood draw procedures, venipuncture safety, and specimen handling.',
+      modules: 10,
+      questions: 150,
+      path: 'courses/phlebotomy.html'
+    },
+    ekg: {
+      icon: '📊',
+      title: 'EKG Technician',
+      desc: 'Learn cardiac anatomy, electrode placement, and rhythm interpretation.',
+      modules: 7,
+      questions: 150,
+      path: 'courses/ekg.html'
+    },
+    pct: {
+      icon: '🏥',
+      title: 'Patient Care Technician',
+      desc: 'Patient communication, vital signs, infection control, and clinical skills.',
+      modules: 3,
+      questions: 150,
+      path: 'courses/pct.html'
+    },
+    cma: {
+      icon: '📋',
+      title: 'Certified Medical Assistant',
+      desc: 'Medical office administration, clinical procedures, and pharmacology.',
+      modules: 4,
+      questions: 200,
+      path: 'courses/cma.html'
+    }
+  };
+
+  function initDashboard() {
+    const access = JSON.parse(localStorage.getItem('studentAccess'));
+
+    if (!access) {
+      window.location.href = 'access.html';
+      return;
+    }
+
+    // Set student name
+    document.getElementById('studentName').textContent = `Hello, ${access.studentName}`;
+
+    // Render courses
+    const grid = document.getElementById('coursesGrid');
+    const userAccess = access.access;
+
+    if (userAccess.length === 0) {
+      grid.innerHTML = `
+        <div class="empty-state" style="grid-column: 1/-1;">
+          <h2>No Courses Yet</h2>
+          <p>You don't have access to any courses. Purchase a course to get started.</p>
+          <a href="/" class="btn-back">Browse Courses</a>
+        </div>
+      `;
+      return;
+    }
+
+    userAccess.forEach(courseType => {
+      const course = COURSE_DATA[courseType];
+      if (!course) return;
+
+      const progress = getProgress(courseType);
+
+      const card = document.createElement('div');
+      card.className = 'course-card';
+      card.innerHTML = `
+        <div class="course-icon">${course.icon}</div>
+        <h3>${course.title}</h3>
+        <p>${course.desc}</p>
+        <div class="progress-section">
+          <div class="progress-label">
+            <span>Progress</span>
+            <span>${progress}%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: ${progress}%;"></div>
+          </div>
+        </div>
+        <button class="btn-start" onclick="startCourse('${courseType}')">
+          ${progress === 0 ? 'Start Course' : 'Continue Learning'}
+        </button>
+        <div class="course-details">
+          <span class="module-count">${course.modules} modules</span>
+          • ${course.questions} practice questions
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+  }
+
+  function getProgress(courseType) {
+    const progress = localStorage.getItem(`progress_${courseType}`) || '0';
+    return parseInt(progress);
+  }
+
+  function startCourse(courseType) {
+    const course = COURSE_DATA[courseType];
+    window.location.href = course.path;
+  }
+
+  function logout() {
+    if (confirm('Are you sure you want to logout? You can always log back in with your code.')) {
+      localStorage.removeItem('studentAccess');
+      window.location.href = 'access.html';
+    }
+  }
+
+  // Initialize on page load
+  window.addEventListener('load', initDashboard);
+</script>
+
+</body>
+</html>
