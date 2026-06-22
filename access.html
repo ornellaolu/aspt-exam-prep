@@ -240,7 +240,7 @@
       };
     });
 
-  function handleAccess(e) {
+  async function handleAccess(e) {
     e.preventDefault();
     const code = document.getElementById('accessCode').value.trim().toUpperCase();
     const message = document.getElementById('message');
@@ -248,6 +248,15 @@
 
     message.className = 'message';
     btn.disabled = true;
+
+    // Reload codes from JSON to ensure we have latest
+    try {
+      const response = await fetch('./codes.json');
+      const data = await response.json();
+      VALID_CODES = data;
+    } catch (error) {
+      console.error('Error loading codes:', error);
+    }
 
     // Simulate verification delay
     setTimeout(() => {
