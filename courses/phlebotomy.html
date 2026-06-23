@@ -3,401 +3,105 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phlebotomy Technician Course | ASPT Prep</title>
+  <title>Phlebotomy Technician - Complete Course | ASPT Prep</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --sage: #2D5A3D;
-      --terracotta: #C8845A;
-      --charcoal: #1C1C1C;
-      --ivory: #FAF0E8;
+      --navy: #25408F;
+      --teal: #00A998;
+      --charcoal: #2c3e50;
       --light-gray: #f5f5f5;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--light-gray);
-      color: var(--charcoal);
-    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--light-gray); color: var(--charcoal); }
 
-    /* NAV */
     nav {
+      position: sticky; top: 0; z-index: 50;
       background: white;
-      border-bottom: 1px solid rgba(45,90,61,0.1);
+      border-bottom: 1px solid rgba(37, 64, 143, 0.1);
       padding: 1rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      height: 70px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
+    .nav-left { display: flex; align-items: center; gap: 2rem; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--navy); text-decoration: none; }
+    .course-title { font-size: 0.9rem; color: #666; }
+    .progress-mini { font-size: 0.8rem; color: var(--teal); font-weight: 700; }
+    .btn-back { background: transparent; border: 1px solid var(--navy); color: var(--navy); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.8rem; cursor: pointer; text-decoration: none; }
+    .btn-back:hover { background: rgba(37, 64, 143, 0.05); }
 
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--sage);
-      text-decoration: none;
-    }
+    .container { display: grid; grid-template-columns: 250px 1fr; gap: 0; min-height: calc(100vh - 70px); }
+    .sidebar { background: white; border-right: 1px solid rgba(37, 64, 143, 0.1); overflow-y: auto; max-height: calc(100vh - 70px); }
+    .sidebar-header { padding: 1.5rem; border-bottom: 1px solid rgba(37, 64, 143, 0.1); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--navy); letter-spacing: 0.08em; }
 
-    .course-title {
-      font-size: 0.9rem;
-      color: #666;
-      font-weight: 500;
-    }
+    .modules-list { list-style: none; }
+    .module-item { padding: 0; border-bottom: 1px solid rgba(37, 64, 143, 0.05); }
+    .module-btn { width: 100%; padding: 1rem 1.5rem; background: transparent; border: none; text-align: left; cursor: pointer; font-size: 0.9rem; color: #666; transition: all 0.2s; position: relative; }
+    .module-btn:hover { background: rgba(37, 64, 143, 0.05); color: var(--navy); }
+    .module-btn.active { background: rgba(0, 169, 152, 0.1); color: var(--teal); font-weight: 600; border-left: 3px solid var(--teal); padding-left: calc(1.5rem - 3px); }
+    .module-btn.completed::after { content: "✓"; position: absolute; right: 1rem; color: #28a745; font-weight: 700; }
 
-    .progress-mini {
-      font-size: 0.8rem;
-      color: var(--terracotta);
-      font-weight: 700;
-    }
+    .main { padding: 3rem; overflow-y: auto; max-height: calc(100vh - 70px); }
+    .content { background: white; border-radius: 12px; padding: 3rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); max-width: 900px; }
 
-    .nav-right {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .btn-back {
-      background: transparent;
-      border: 1px solid var(--sage);
-      color: var(--sage);
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .btn-back:hover { background: rgba(45,90,61,0.05); }
-
-    /* LAYOUT */
-    .container {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 0;
-      min-height: calc(100vh - 60px);
-    }
-
-    /* SIDEBAR */
-    .sidebar {
-      background: white;
-      border-right: 1px solid rgba(45,90,61,0.1);
-      overflow-y: auto;
-      max-height: calc(100vh - 60px);
-    }
-
-    .sidebar-header {
-      padding: 1.5rem;
-      border-bottom: 1px solid rgba(45,90,61,0.1);
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--sage);
-      letter-spacing: 0.08em;
-    }
-
-    .modules-list {
-      list-style: none;
-    }
-
-    .module-item {
-      padding: 0;
-      border-bottom: 1px solid rgba(45,90,61,0.05);
-    }
-
-    .module-btn {
-      width: 100%;
-      padding: 1rem 1.5rem;
-      background: transparent;
-      border: none;
-      text-align: left;
-      cursor: pointer;
-      font-size: 0.9rem;
-      color: #666;
-      transition: all 0.2s;
-      position: relative;
-    }
-
-    .module-btn:hover { background: rgba(45,90,61,0.05); color: var(--sage); }
-
-    .module-btn.active {
-      background: rgba(200,132,90,0.1);
-      color: var(--terracotta);
-      font-weight: 600;
-      border-left: 3px solid var(--terracotta);
-      padding-left: calc(1.5rem - 3px);
-    }
-
-    .module-btn.completed::after {
-      content: "✓";
-      position: absolute;
-      right: 1rem;
-      color: #28a745;
-      font-weight: 700;
-    }
-
-    /* MAIN */
-    .main {
-      padding: 3rem;
-      overflow-y: auto;
-      max-height: calc(100vh - 60px);
-    }
-
-    .content {
-      background: white;
-      border-radius: 12px;
-      padding: 3rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      max-width: 900px;
-    }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      color: var(--sage);
-      margin-bottom: 1rem;
-    }
-
-    .module-meta {
-      display: flex;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid rgba(45,90,61,0.1);
-    }
-
-    .meta-item {
-      font-size: 0.85rem;
-      color: #666;
-    }
-
-    .meta-item strong { color: var(--sage); }
-
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: var(--sage);
-      margin: 2rem 0 1rem;
-    }
-
-    h3 {
-      font-size: 1.1rem;
-      color: var(--charcoal);
-      margin: 1.5rem 0 0.8rem;
-      font-weight: 600;
-    }
+    h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--navy); margin-bottom: 1rem; }
+    h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--navy); margin: 2rem 0 1rem; }
+    h3 { font-size: 1.1rem; color: var(--charcoal); margin: 1.5rem 0 0.8rem; font-weight: 600; }
 
     p { line-height: 1.8; margin: 1rem 0; color: #333; }
-
     ul, ol { margin: 1rem 0 1rem 2rem; }
     li { margin: 0.5rem 0; line-height: 1.7; }
 
-    .highlight {
-      background: #fff3cd;
-      padding: 1.5rem;
-      border-left: 4px solid #ffc107;
-      border-radius: 6px;
-      margin: 1.5rem 0;
-    }
+    .highlight { background: #fff3cd; padding: 1.5rem; border-left: 4px solid #ffc107; border-radius: 6px; margin: 1.5rem 0; }
+    .key-points { background: #d4edda; padding: 1.5rem; border-left: 4px solid #28a745; border-radius: 6px; margin: 2rem 0; }
 
-    .example-box {
-      background: #f0f8ff;
-      padding: 1.5rem;
-      border-left: 4px solid #2D5A3D;
-      border-radius: 6px;
-      margin: 1.5rem 0;
-      font-style: italic;
-    }
+    .module-meta { display: flex; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(37, 64, 143, 0.1); }
+    .meta-item { font-size: 0.85rem; color: #666; }
+    .meta-item strong { color: var(--navy); }
 
-    .key-points {
-      background: #d4edda;
-      padding: 1.5rem;
-      border-left: 4px solid #28a745;
-      border-radius: 6px;
-      margin: 2rem 0;
-    }
+    .quiz-section { margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--teal); }
+    .quiz-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 1rem; }
+    .quiz-intro { background: rgba(0, 169, 152, 0.05); padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.9rem; color: #666; }
 
-    .key-points li { margin: 0.6rem 0; }
+    .question-block { background: #f9f9f9; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; border: 1px solid rgba(37, 64, 143, 0.1); }
+    .question-num { font-weight: 700; color: var(--teal); margin-bottom: 0.5rem; font-size: 0.9rem; }
+    .question-text { font-weight: 600; margin: 0.8rem 0; font-size: 1rem; }
 
-    /* QUIZ */
-    .quiz-section {
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 2px solid var(--terracotta);
-    }
-
-    .quiz-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: var(--sage);
-      margin-bottom: 1rem;
-    }
-
-    .quiz-intro {
-      background: rgba(200,132,90,0.05);
-      padding: 1rem;
-      border-radius: 6px;
-      margin-bottom: 1.5rem;
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    .question-block {
-      background: #f9f9f9;
-      padding: 1.5rem;
-      margin: 1.5rem 0;
-      border-radius: 8px;
-      border: 1px solid rgba(45,90,61,0.1);
-    }
-
-    .question-num {
-      font-weight: 700;
-      color: var(--terracotta);
-      margin-bottom: 0.5rem;
-      font-size: 0.9rem;
-    }
-
-    .question-text {
-      font-weight: 600;
-      margin: 0.8rem 0;
-      font-size: 1rem;
-    }
-
-    .options {
-      margin: 1.2rem 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .option {
-      padding: 0.8rem 1rem;
-      border: 1px solid rgba(45,90,61,0.2);
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.2s;
-      background: white;
-    }
-
-    .option:hover {
-      background: rgba(45,90,61,0.05);
-      border-color: var(--terracotta);
-    }
-
+    .options { margin: 1.2rem 0; display: flex; flex-direction: column; gap: 0.8rem; }
+    .option { padding: 0.8rem 1rem; border: 1px solid rgba(37, 64, 143, 0.2); border-radius: 6px; cursor: pointer; transition: all 0.2s; background: white; }
+    .option:hover { background: rgba(37, 64, 143, 0.05); border-color: var(--teal); }
     .option input[type="radio"] { margin-right: 0.8rem; }
+    .option label { cursor: pointer; display: flex; align-items: center; width: 100%; }
 
-    .option label {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      width: 100%;
-    }
-
-    .answer-feedback {
-      margin-top: 1rem;
-      padding: 1rem;
-      border-radius: 6px;
-      display: none;
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
+    .answer-feedback { margin-top: 1rem; padding: 1rem; border-radius: 6px; display: none; font-size: 0.9rem; line-height: 1.6; }
     .answer-feedback.show { display: block; }
+    .correct { background: #d4edda; border-left: 4px solid #28a745; color: #155724; }
+    .incorrect { background: #f8d7da; border-left: 4px solid #dc3545; color: #721c24; }
 
-    .correct {
-      background: #d4edda;
-      border-left: 4px solid #28a745;
-      color: #155724;
-    }
+    .btn-submit { background: var(--navy); color: white; padding: 0.8rem 2rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 700; margin-top: 1rem; font-family: 'DM Sans', sans-serif; }
+    .btn-submit:hover { background: #1a3a5c; }
 
-    .incorrect {
-      background: #f8d7da;
-      border-left: 4px solid #dc3545;
-      color: #721c24;
-    }
-
-    /* BUTTONS */
-    .btn-submit {
-      background: var(--sage);
-      color: white;
-      padding: 0.8rem 2rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 700;
-      margin-top: 1rem;
-      font-family: 'DM Sans', sans-serif;
-    }
-
-    .btn-submit:hover { background: #1a3a25; }
-
-    .nav-buttons {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-      justify-content: space-between;
-    }
-
-    .btn-nav {
-      flex: 1;
-      padding: 0.8rem 1.5rem;
-      border: 1px solid var(--sage);
-      background: white;
-      color: var(--sage);
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.2s;
-    }
-
-    .btn-nav:hover { background: var(--sage); color: white; }
+    .nav-buttons { display: flex; gap: 1rem; margin-top: 2rem; justify-content: space-between; }
+    .btn-nav { flex: 1; padding: 0.8rem 1.5rem; border: 1px solid var(--navy); background: white; color: var(--navy); border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+    .btn-nav:hover { background: var(--navy); color: white; }
     .btn-nav:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    .btn-next {
-      background: var(--sage);
-      color: white;
-    }
-
-    .quiz-result {
-      background: #d4edda;
-      padding: 1.5rem;
-      border-radius: 8px;
-      text-align: center;
-      margin: 1.5rem 0;
-      display: none;
-    }
-
+    .quiz-result { background: #d4edda; padding: 1.5rem; border-radius: 8px; text-align: center; margin: 1.5rem 0; display: none; }
     .quiz-result.show { display: block; }
-
     .quiz-result h3 { color: #155724; margin-bottom: 0.5rem; }
-    .quiz-result p { color: #155724; }
-
-    @media(max-width: 1024px) {
-      .container { grid-template-columns: 200px 1fr; }
-      .sidebar { max-height: calc(100vh - 60px); }
-      .main { padding: 2rem; }
-      .content { padding: 2rem; }
-    }
 
     @media(max-width: 768px) {
       .container { grid-template-columns: 1fr; }
       .sidebar { display: none; }
-      nav { flex-direction: column; gap: 1rem; }
       .main { padding: 1rem; }
       .content { padding: 1.5rem; }
-      h1 { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -411,17 +115,14 @@
       <div class="progress-mini">Progress: <span id="navProgress">0</span>%</div>
     </div>
   </div>
-  <div class="nav-right">
-    <a href="../dashboard.html" class="btn-back">← Back to Dashboard</a>
-  </div>
+  <a href="../dashboard.html" class="btn-back">← Dashboard</a>
 </nav>
 
 <div class="container">
   <div class="sidebar">
-    <div class="sidebar-header">Modules</div>
+    <div class="sidebar-header">Modules (10)</div>
     <ul class="modules-list" id="modulesList"></ul>
   </div>
-
   <div class="main">
     <div class="content" id="content"></div>
   </div>
@@ -433,31 +134,96 @@
       {
         id: 1,
         title: "Introduction to Phlebotomy & the Healthcare System",
-        sections: [
-          { type: "objectives", content: ["Understand the role and responsibilities of a phlebotomy technician", "Identify different healthcare settings where phlebotomists work", "Recognize the importance of professional certification", "Grasp medical terminology basics used in healthcare", "Understand legal and ethical responsibilities in patient care"] },
-          { type: "heading", content: "What is a Phlebotomist? Your Role in Healthcare" },
-          { type: "text", content: "A <strong>phlebotomist</strong> is a healthcare professional trained to draw blood from patients. Think of yourself as a bridge between the patient and the laboratory—your job is to safely collect blood specimens that doctors and lab technicians use to diagnose and monitor diseases." },
-          { type: "text", content: "<strong>Your main responsibilities include:</strong>" },
-          { type: "list", content: ["Safely drawing blood from patients using needles or lancets", "Labeling specimens correctly so they don't get mixed up", "Following strict safety protocols to protect yourself and patients", "Communicating calmly with anxious or nervous patients", "Maintaining accurate records of what blood was drawn and when"] },
-          { type: "text", content: "<strong>The scope of practice</strong> means knowing exactly what you can and cannot do. As a phlebotomist, you draw blood—that's your specialty. You don't diagnose diseases, you don't interpret lab results, and you don't advise patients on their medical conditions. But you ARE responsible for making sure the specimen is collected properly, because if you mess this up, the entire lab result becomes unreliable." },
-          { type: "highlight", content: "<strong>Real-world example:</strong> Imagine a doctor orders a blood test to check a patient's cholesterol. If you don't mix the tube properly after drawing blood, the specimen might clot or separate incorrectly. The lab will reject it, and the patient will need to come back for another draw. That's why accuracy matters in every single step." }
-        ],
+        content: "<h2>What is a Phlebotomist?</h2><p>A phlebotomist is a healthcare professional trained to draw blood from patients. Think of yourself as a bridge between the patient and the laboratory.</p><h3>Your Main Responsibilities:</h3><ul><li>Safely drawing blood from patients</li><li>Labeling specimens correctly</li><li>Following strict safety protocols</li><li>Communicating calmly with patients</li><li>Maintaining accurate records</li></ul><h2>Your Scope of Practice</h2><p>As a phlebotomist, you draw blood. You don't diagnose diseases, interpret lab results, or advise patients on medical conditions. But you ARE responsible for proper specimen collection.</p><h2>Healthcare Settings</h2><p>Phlebotomists work in: hospitals, outpatient clinics, reference laboratories, blood banks, urgent care centers, and point-of-care locations.</p><h2>Why Certification Matters</h2><ul><li>Shows employers you know your stuff</li><li>Provides legal protection</li><li>Leads to career advancement</li><li>ASPT certification is the gold standard</li></ul>",
         quiz: [
-          { q: "A phlebotomist's primary role is to:", opts: ["A) Diagnose diseases based on blood samples", "B) Safely collect blood specimens for testing", "C) Interpret laboratory results for patients", "D) Administer medication to patients"], correct: 1, exp: "Phlebotomists collect blood. Pathologists and lab technicians interpret results, and doctors diagnose diseases." },
-          { q: "Your scope of practice as a phlebotomist includes:", opts: ["A) Diagnosing patient conditions", "B) Interpreting lab results", "C) Safely drawing blood specimens", "D) Advising patients on medical treatment"], correct: 2, exp: "Only blood collection is within your scope. Other tasks require different healthcare credentials." }
+          { q: "A phlebotomist's primary role is to:", opts: ["A) Diagnose diseases", "B) Safely collect blood specimens", "C) Interpret lab results", "D) Advise patients"], correct: 1, exp: "Phlebotomists collect blood. Other healthcare professionals diagnose and interpret." },
+          { q: "Which setting typically has the highest volume of blood draws?", opts: ["A) Doctor's office", "B) Urgent care", "C) Hospital", "D) Reference laboratory"], correct: 3, exp: "Reference labs process samples from multiple sources, handling 500+ draws daily." }
         ]
       },
       {
         id: 2,
-        title: "Anatomy & Physiology: The Circulatory System",
-        sections: [
-          { type: "heading", content: "Understanding Blood Vessels" },
-          { type: "text", content: "To draw blood safely, you need to understand the circulatory system. Blood travels through three main types of blood vessels: arteries, capillaries, and veins." }
-        ],
-        quiz: []
+        title: "Anatomy & Physiology of the Circulatory System",
+        content: "<h2>The Heart: Your Body's Pump</h2><p>The heart is a four-chambered pump with two main jobs: pump oxygen-poor blood to the lungs, and pump oxygen-rich blood throughout the body.</p><h3>The Four Chambers:</h3><ul><li><strong>Right atrium</strong> — receives oxygen-poor blood from body</li><li><strong>Right ventricle</strong> — pumps to lungs</li><li><strong>Left atrium</strong> — receives oxygen-rich blood from lungs</li><li><strong>Left ventricle</strong> — pumps to entire body (strongest chamber)</li></ul><h2>Blood Vessels: The Highway System</h2><h3>Arteries:</h3><ul><li>Carry blood AWAY from heart</li><li>High pressure, thick walls</li><li>Bright red blood (oxygen-rich)</li><li>Deep vessels — avoid in phlebotomy</li></ul><h3>Veins:</h3><ul><li>Carry blood TOWARD heart</li><li>Low pressure, thin walls</li><li>Dark red blood (oxygen-poor)</li><li>Visible under skin — THIS IS WHERE YOU DRAW</li><li>Have valves to prevent backflow</li></ul><h3>Capillaries:</h3><ul><li>Tiny vessels connecting arteries to veins</li><li>Ultra-thin walls for gas exchange</li></ul><h2>Blood Composition</h2><p>When you draw blood, you're drawing: <strong>Plasma (55%)</strong> - yellowish liquid with proteins and nutrients, and <strong>Blood Cells (45%)</strong> - red cells (oxygen transport), white cells (immune), platelets (clotting).</p>",
+        quiz: [
+          { q: "Arteries carry:", opts: ["A) Blood toward heart", "B) Blood away from heart", "C) Only oxygen-poor blood", "D) Blood at low pressure"], correct: 1, exp: "Arteries carry oxygenated blood away from the heart. Veins carry it back." },
+          { q: "Which vessels do you draw blood from?", opts: ["A) Arteries", "B) Capillaries", "C) Veins", "D) Lymph vessels"], correct: 2, exp: "Veins are safe, accessible, low pressure. Arteries are deep and dangerous for phlebotomy." }
+        ]
+      },
+      {
+        id: 3,
+        title: "Venipuncture Procedure & Technique",
+        content: "<h2>Venipuncture Basics</h2><p>Venipuncture is the procedure of entering a vein to collect blood. It requires skill, sterility, and patient care.</p><h2>Essential Equipment</h2><ul><li>Sterile needle (20-23 gauge typical)</li><li>Tube holder/adapter</li><li>Collection tubes (EDTA, SST, lithium heparin)</li><li>Alcohol prep pad (70% isopropyl)</li><li>Gauze pads</li><li>Bandage</li><li>Gloves and PPE</li></ul><h2>The Venipuncture Procedure</h2><ol><li>Identify patient and verify orders</li><li>Select appropriate site (median cubital vein preferred)</li><li>Apply tourniquet 4-6 inches above site</li><li>Clean with alcohol prep (30 seconds)</li><li>Insert needle at 15-30 degree angle</li><li>Thread needle into vein</li><li>Allow blood to flow into tubes</li><li>Release tourniquet</li><li>Remove needle</li><li>Apply pressure with gauze</li><li>Label specimen immediately</li></ol><h2>Common Sites</h2><ul><li><strong>Median cubital</strong> - Best choice, easily accessible</li><li><strong>Cephalic</strong> - Lateral forearm</li><li><strong>Basilic</strong> - Medial forearm, deeper, harder to find</li></ul>",
+        quiz: [
+          { q: "The angle of needle insertion should be:", opts: ["A) 45-60 degrees", "B) 15-30 degrees", "C) 90 degrees", "D) 5-10 degrees"], correct: 1, exp: "15-30 degree angle allows smooth entry without damaging vessel." },
+          { q: "Which vein is typically the best choice for venipuncture?", opts: ["A) Basilic", "B) Cephalic", "C) Median cubital", "D) Radial"], correct: 2, exp: "Median cubital is accessible, easily found, and less painful for patients." }
+        ]
+      },
+      {
+        id: 4,
+        title: "Blood Collection Tubes & Additives",
+        content: "<h2>Understanding Collection Tubes</h2><p>Different tests require different tubes with different additives. Using the wrong tube invalidates the test.</p><h2>Common Tube Types</h2><h3>EDTA (Purple/Lavender Top)</h3><ul><li>Anticoagulant: Ethylenediaminetetraacetic acid</li><li>Used for: CBC (complete blood count), hematology tests</li><li>Mix thoroughly by inverting 8-10 times</li></ul><h3>SST/Serum Separator (Gold/Yellow Top)</h3><ul><li>Contains clot activator & gel separator</li><li>Used for: Chemistry tests, serology</li><li>Allow to sit 5-10 minutes for clotting</li></ul><h3>Lithium Heparin (Green Top)</h3><ul><li>Anticoagulant: Lithium heparin</li><li>Used for: Plasma chemistry tests</li><li>Mix gently immediately after draw</li></ul><h3>Sodium Citrate (Blue Top)</h3><ul><li>Anticoagulant: Sodium citrate</li><li>Used for: Coagulation studies (PT, PTT)</li><li>Fill to exact line - volume critical</li></ul><h2>Order of Draw (Critical!)</h2><ol><li>Blood culture bottles (yellow/black)</li><li>SST/Serum (gold)</li><li>EDTA (purple)</li><li>Heparin (green)</li><li>Citrate (blue)</li></ol><p>Wrong order = cross-contamination = invalid results</p>",
+        quiz: [
+          { q: "EDTA tubes are primarily used for:", opts: ["A) Chemistry tests", "B) Coagulation studies", "C) Complete blood count", "D) Serology"], correct: 2, exp: "EDTA is the anticoagulant for hematology and CBC testing." },
+          { q: "What is the correct order of draw?", opts: ["A) Citrate, EDTA, SST", "B) SST, EDTA, Citrate", "C) Blood culture, SST, EDTA, Citrate", "D) EDTA, SST, Citrate"], correct: 2, exp: "Correct order prevents cross-contamination and additive carryover." }
+        ]
+      },
+      {
+        id: 5,
+        title: "Specimen Handling & Errors",
+        content: "<h2>Proper Specimen Handling</h2><p>Specimen quality directly impacts test results. Poor handling = invalid tests = patient harm.</p><h2>Critical Handling Rules</h2><ul><li>Label immediately after draw (3 identifiers)</li><li>Keep specimens at correct temperature</li><li>Prevent hemolysis (breaking RBCs)</li><li>Mix tubes thoroughly per protocol</li><li>Prevent evaporation (cap all tubes)</li><li>Transport to lab promptly</li></ul><h2>Common Pre-Analytical Errors</h2><h3>Hemolysis</h3><ul><li><strong>Cause:</strong> RBCs rupture, releasing hemoglobin</li><li><strong>Results in:</strong> False potassium elevation, invalid results</li><li><strong>Prevention:</strong> Smooth venipuncture, don't shake tube</li></ul><h3>Hemoconcentration</h3><ul><li><strong>Cause:</strong> Prolonged tourniquet application (&gt;1 minute)</li><li><strong>Results in:</strong> Falsely elevated values</li><li><strong>Prevention:</strong> Keep tourniquet under 1 minute</li></ul><h3>Clotting in Anticoagulant Tubes</h3><ul><li><strong>Cause:</strong> Incomplete fill or inadequate mixing</li><li><strong>Results in:</strong> Tube rejection</li><li><strong>Prevention:</strong> Fill to exact level, mix immediately</li></ul><h2>Temperature Control</h2><ul><li><strong>Room temperature:</strong> Chemistry, serology (routine)</li><li><strong>Refrigerated (2-8°C):</strong> Coagulation studies, blood cultures</li><li><strong>Frozen:</strong> Some hormones, special studies</li></ul>",
+        quiz: [
+          { q: "Hemolysis can be prevented by:", opts: ["A) Applying tourniquet for 2 minutes", "B) Performing smooth venipuncture", "C) Vigorously shaking tubes", "D) Delaying labeling"], correct: 1, exp: "Smooth technique, avoiding unnecessary shaking, prevents cell rupture." },
+          { q: "How long should a tourniquet stay on?", opts: ["A) 30 seconds", "B) 1-2 minutes", "C) Less than 1 minute", "D) 5 minutes"], correct: 2, exp: "Tourniquet should be released within 1 minute to prevent hemoconcentration." }
+        ]
+      },
+      {
+        id: 6,
+        title: "Patient Safety & Infection Control",
+        content: "<h2>OSHA Bloodborne Pathogens Standard</h2><p>Federal law (OSHA) requires specific safety measures to protect against HIV, Hepatitis B, Hepatitis C, and other bloodborne pathogens.</p><h2>Standard Precautions</h2><ul><li><strong>Gloves:</strong> Always wear. Change between patients.</li><li><strong>Face protection:</strong> Wear if splash risk</li><li><strong>Gown:</strong> Wear if contamination risk</li><li><strong>Hand hygiene:</strong> Before and after contact</li><li><strong>Sharps safety:</strong> Never recap needles. Use sharps containers.</li></ul><h2>Needle Safety</h2><ul><li>Use safety-engineered devices (automatic retract)</li><li>Dispose of needles immediately in sharps container</li><li>NEVER recap, bend, or shear needles</li><li>Never leave sharps unattended</li><li>If needlestick: Wash immediately, report, seek evaluation</li></ul><h2>Exposure Control Plan</h2><ul><li>Your employer must have a written plan</li><li>You should know your facility's procedures</li><li>Post-exposure prophylaxis (PEP) available</li><li>Free testing and vaccinations provided</li></ul><h2>Equipment Disinfection</h2><ul><li>Work surfaces: 70% alcohol or hospital-grade disinfectant</li><li>Between patients always</li><li>End of shift minimum</li></ul>",
+        quiz: [
+          { q: "If a needlestick occurs, you should:", opts: ["A) Ignore it if no bleeding", "B) Wash immediately and report", "C) Wait to see if infection develops", "D) Discard the needle quietly"], correct: 1, exp: "Immediate washing and reporting allows timely evaluation and possible PEP." },
+          { q: "OSHA requires needles be:", opts: ["A) Recapped carefully", "B) Disposed in sharps containers immediately", "C) Bent to reduce injury risk", "D) Stored in plastic bags"], correct: 1, exp: "Sharps containers prevent needlestick injuries during cleanup." }
+        ]
+      },
+      {
+        id: 7,
+        title: "Special Patient Populations",
+        content: "<h2>Pediatric Patients</h2><ul><li><strong>Challenges:</strong> Small veins, fear/anxiety, dehydration risk</li><li><strong>Technique:</strong> Use smaller needles (23-25 gauge), heel stick for infants</li><li><strong>Communication:</strong> Explain in age-appropriate language, have parent nearby</li><li><strong>Best sites:</strong> Dorsal hand veins, scalp veins for infants</li></ul><h2>Geriatric Patients</h2><ul><li><strong>Challenges:</strong> Fragile skin, rolling veins, medication effects</li><li><strong>Technique:</strong> Use gentle pressure, avoid vigorous rubbing</li><li><strong>Communication:</strong> Speak clearly, allow extra time, explain procedures</li><li><strong>Best sites:</strong> Forearm veins often best due to skin integrity</li></ul><h2>Patients with Difficult Veins</h2><ul><li>Obese patients: Veins may be deeper, need longer needles</li><li>Dehydrated: Veins collapsed, apply warm compress</li><li>Edematous: Avoid swollen arm, use opposite arm</li><li>Mastectomy: NEVER draw from operated side (lymphedema risk)</li></ul><h2>Patients with Anxiety</h2><ul><li>Use calm, reassuring voice</li><li>Explain procedure beforehand</li><li>Allow them to look away if desired</li><li>Deep breathing exercises</li><li>Some facilities use topical numbing cream</li></ul><h2>Special Conditions</h2><ul><li><strong>Dialysis fistulas:</strong> NEVER use for venipuncture</li><li><strong>IV lines:</strong> Can draw from line if protocol allows</li><li><strong>Heparin lock:</strong> Must flush before draw</li></ul>",
+        quiz: [
+          { q: "For a pediatric patient, you would:", opts: ["A) Use largest needle available", "B) Use smaller gauge needle (23-25)", "C) Skip explanation", "D) Draw without parent present"], correct: 1, exp: "Smaller needles reduce pain and trauma for pediatric patients." },
+          { q: "After mastectomy, you should:", opts: ["A) Avoid drawing from that side", "B) Draw from arm on operative side", "C) Use that arm only if necessary", "D) It doesn't matter"], correct: 0, exp: "Lymphedema risk prohibits venipuncture on mastectomy side." }
+        ]
+      },
+      {
+        id: 8,
+        title: "Legal & Ethical Responsibilities",
+        content: "<h2>Patient Rights</h2><ul><li><strong>Informed consent:</strong> Explain what you're doing and why</li><li><strong>Privacy:</strong> Use screens/curtains during blood draw</li><li><strong>Confidentiality (HIPAA):</strong> Never discuss patient info</li><li><strong>Right to refuse:</strong> Respect their decision</li><li><strong>Access to records:</strong> Patients can request their lab results</li></ul><h2>HIPAA Violations (Federal Crime)</h2><ul><li>Discussing patient results at lunch</li><li>Looking at charts without clinical need</li><li>Posting about patients on social media</li><li>Leaving patient info visible</li><li><strong>Penalty:</strong> Up to $100,000 per violation</li></ul><h2>Scope of Practice</h2><p>As a phlebotomist you CAN:</p><ul><li>Draw blood via venipuncture</li><li>Perform capillary punctures</li><li>Collect urine specimens</li><li>Label and transport specimens</li></ul><p>As a phlebotomist you CANNOT:</p><ul><li>Diagnose conditions</li><li>Interpret lab results</li><li>Prescribe treatment</li><li>Give medical advice</li><li>Access patient records without need</li></ul><h2>Documentation</h2><ul><li>Chart all attempts (successful and failed)</li><li>Note any complications</li><li>Accurate labeling is legal documentation</li><li>Incomplete documentation = liability</li></ul>",
+        quiz: [
+          { q: "Informed consent means:", opts: ["A) Patient signed a form", "B) Patient understands and agrees to procedure", "C) Doctor gave permission", "D) It's always assumed"], correct: 1, exp: "True informed consent requires patient understanding and voluntary agreement." },
+          { q: "HIPAA violations can result in fines up to:", opts: ["A) $1,000", "B) $10,000", "C) $100,000", "D) No fines, just warnings"], correct: 2, exp: "HIPAA violations are federal crimes with significant penalties." }
+        ]
+      },
+      {
+        id: 9,
+        title: "Quality Assurance & Testing",
+        content: "<h2>Quality Control Basics</h2><p>Quality control ensures lab tests are accurate and reliable. Phlebotomists play a critical role in pre-analytical QC.</p><h2>Pre-Analytical Phase (Your Responsibility)</h2><ul><li>Patient identification</li><li>Proper specimen collection</li><li>Correct tube selection</li><li>Proper labeling</li><li>Specimen handling and storage</li></ul><h2>Analytical Phase (Lab's Responsibility)</h2><ul><li>Testing and calibration</li><li>Quality control runs</li><li>Proficiency testing</li></ul><h2>Post-Analytical Phase</h2><ul><li>Result verification</li><li>Report generation</li><li>Result delivery</li></ul><h2>Common Reasons Labs Reject Specimens</h2><ul><li>Hemolyzed sample (RBCs broken)</li><li>Wrong tube type for test</li><li>Insufficient quantity</li><li>Improper labeling or unlabeled</li><li>Clotted anticoagulant tube</li><li>Contaminated or leaking specimen</li><li>Delayed transport</li></ul><h2>Your QA Responsibilities</h2><ul><li>Follow standard operating procedures exactly</li><li>Report errors immediately</li><li>Participate in competency assessments</li><li>Stay current with training</li><li>Maintain accurate records</li></ul>",
+        quiz: [
+          { q: "Pre-analytical errors are primarily the responsibility of:", opts: ["A) Laboratory director", "B) Phlebotomist", "C) Physician", "D) Insurance company"], correct: 1, exp: "Phlebotomists directly control specimen collection and handling." },
+          { q: "A hemolyzed specimen should be:", opts: ["A) Tested anyway with notation", "B) Recollected", "C) Frozen for later testing", "D) Mixed vigorously"], correct: 1, exp: "Hemolysis invalidates results for many tests, requiring recollection." }
+        ]
+      },
+      {
+        id: 10,
+        title: "Practice Exam & Review",
+        content: "<h2>Review of Key Concepts</h2><p>This module consolidates everything you've learned across all 9 previous modules. Test yourself with the practice questions below.</p><h2>Key Topics to Remember</h2><ul><li>Phlebotomy role and scope of practice</li><li>Circulatory system anatomy</li><li>Venipuncture technique and sites</li><li>Tube types and order of draw</li><li>Specimen handling and errors</li><li>Safety and infection control</li><li>Special patient populations</li><li>Legal and ethical requirements</li><li>Quality assurance</li></ul><h2>Study Tips for the Exam</h2><ul><li>Review all module content thoroughly</li><li>Understand WHY procedures are done (not just HOW)</li><li>Focus on patient safety first</li><li>Know the order of draw by heart</li><li>Understand HIPAA and legal implications</li><li>Practice scenario questions</li></ul>",
+        quiz: [
+          { q: "The order of draw prevents:", opts: ["A) Patient discomfort", "B) Needle breakage", "C) Cross-contamination between tubes", "D) Patient allergies"], correct: 2, exp: "Correct order prevents additives from contaminating other specimens." },
+          { q: "ASPT certification is valid for:", opts: ["A) 1 year", "B) 2 years", "C) 3 years", "D) 5 years"], correct: 2, exp: "ASPT certification requires renewal every 3 years." },
+          { q: "Your primary responsibility as a phlebotomist is:", opts: ["A) Diagnosing disease", "B) Patient safety and specimen quality", "C) Interpreting results", "D) Prescribing treatment"], correct: 1, exp: "Patient safety and specimen integrity are the foundation of phlebotomy." },
+          { q: "Median cubital vein is preferred because:", opts: ["A) It's deeper", "B) It's easily accessible and less painful", "C) It requires no tourniquet", "D) It's only for veins"], correct: 1, exp: "Median cubital is accessible, easily found, and better tolerated by patients." }
+        ]
       }
-    ],
-    practiceExam: []
+    ]
   };
 
   let currentModule = 0;
@@ -475,15 +241,12 @@
     COURSE_DATA.modules.forEach((mod, idx) => {
       const li = document.createElement('li');
       li.className = 'module-item';
-
       const btn = document.createElement('button');
       btn.className = 'module-btn';
       if (idx === currentModule) btn.classList.add('active');
       if (isModuleCompleted(idx)) btn.classList.add('completed');
-
       btn.textContent = `Module ${mod.id}: ${mod.title}`;
       btn.onclick = () => selectModule(idx);
-
       li.appendChild(btn);
       list.appendChild(li);
     });
@@ -506,36 +269,19 @@
         <div class="meta-item"><strong>Module:</strong> ${mod.id} of ${COURSE_DATA.modules.length}</div>
         <div class="meta-item"><strong>Progress:</strong> <span id="moduleProgress">0</span>%</div>
       </div>
+      <div>${mod.content}</div>
     `;
 
-    mod.sections.forEach(sec => {
-      if (sec.type === 'objectives') {
-        output += '<div class="highlight"><strong>Learning Objectives</strong><ul>';
-        sec.content.forEach(obj => output += `<li>${obj}</li>`);
-        output += '</ul></div>';
-      } else if (sec.type === 'heading') {
-        output += `<h2>${sec.content}</h2>`;
-      } else if (sec.type === 'text') {
-        output += `<p>${sec.content}</p>`;
-      } else if (sec.type === 'list') {
-        output += '<ul>';
-        sec.content.forEach(item => output += `<li>${item}</li>`);
-        output += '</ul>';
-      } else if (sec.type === 'highlight') {
-        output += `<div class="example-box">${sec.content}</div>`;
-      }
-    });
-
-    if (mod.quiz.length > 0) {
+    if (mod.quiz && mod.quiz.length > 0) {
       output += `<div class="quiz-section"><h2 class="quiz-title">Module Quiz</h2>
-        <div class="quiz-intro">You must score 70% to complete this module. Good luck!</div>`;
+        <div class="quiz-intro">Score 70%+ to complete this module.</div>`;
 
       mod.quiz.forEach((q, qidx) => {
         output += `
           <div class="question-block">
             <div class="question-num">Question ${qidx + 1}</div>
             <div class="question-text">${q.q}</div>
-            <div class="options" id="q${qidx}">
+            <div class="options">
               ${q.opts.map((opt, oidx) => `
                 <div class="option">
                   <label>
@@ -559,8 +305,8 @@
 
     output += `
       <div class="nav-buttons">
-        <button class="btn-nav" onclick="selectModule(${idx - 1})" ${idx === 0 ? 'disabled' : ''}>← Previous Module</button>
-        <button class="btn-nav btn-next" onclick="selectModule(${idx + 1})" ${idx === COURSE_DATA.modules.length - 1 ? 'disabled' : ''}>Next Module →</button>
+        <button class="btn-nav" onclick="selectModule(${idx - 1})" ${idx === 0 ? 'disabled' : ''}>← Previous</button>
+        <button class="btn-nav" onclick="selectModule(${idx + 1})" ${idx === COURSE_DATA.modules.length - 1 ? 'disabled' : ''}>Next →</button>
       </div>
     `;
 
@@ -594,11 +340,9 @@
       markModuleCompleted(moduleIdx);
       updateProgress();
     } else {
-      result.className = 'quiz-result show incorrect';
-      result.innerHTML = `<h3>Score: ${percentage}%</h3><p>You need 70% to pass. Review the material and try again!</p>`;
+      result.className = 'quiz-result show';
+      result.innerHTML = `<h3>Score: ${percentage}%</h3><p>Review the material and try again (70% required).</p>`;
     }
-
-    document.querySelector('.main').scrollTop = document.getElementById('quizResult').offsetTop - 200;
   }
 
   function markModuleCompleted(idx) {
@@ -612,11 +356,9 @@
   function updateProgress() {
     const total = COURSE_DATA.modules.length;
     let completed = 0;
-
     for (let i = 0; i < total; i++) {
       if (isModuleCompleted(i)) completed++;
     }
-
     const percent = Math.round((completed / total) * 100);
     document.getElementById('navProgress').textContent = percent;
     localStorage.setItem('progress_phlebotomy', percent);
