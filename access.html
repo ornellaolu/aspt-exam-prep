@@ -219,28 +219,19 @@
 </div>
 
 <script>
-  // Load valid access codes from codes.json
-  let VALID_CODES = {};
+  // Valid access codes
+  const VALID_CODES = {
+    "TEST-PHLEB-2026": { access: ["phlebotomy"], studentName: "Test Phlebotomy" },
+    "TEST-EKG-2026": { access: ["ekg"], studentName: "Test EKG" },
+    "TEST-PCT-2026": { access: ["pct"], studentName: "Test Patient Care" },
+    "TEST-CMA-2026": { access: ["cma"], studentName: "Test Medical Assistant" },
+    "TEST-BUNDLE-2026": { access: ["phlebotomy", "ekg", "pct", "cma"], studentName: "Test All Courses" },
+    "PHLEB-50298": { access: ["phlebotomy"], studentName: "John Smith" },
+    "EKG-49201": { access: ["ekg"], studentName: "Sarah Johnson" },
+    "BUNDLE-50102": { access: ["phlebotomy", "ekg", "pct", "cma"], studentName: "Michael Davis" }
+  };
 
-  fetch('./codes.json')
-    .then(response => response.json())
-    .then(data => {
-      VALID_CODES = data;
-      console.log('Codes loaded:', Object.keys(VALID_CODES).length);
-    })
-    .catch(error => {
-      console.error('Failed to load codes:', error);
-      // Fallback codes
-      VALID_CODES = {
-        "TEST-PHLEB-2026": { access: ["phlebotomy"], studentName: "Test Phlebotomy" },
-        "TEST-EKG-2026": { access: ["ekg"], studentName: "Test EKG" },
-        "TEST-PCT-2026": { access: ["pct"], studentName: "Test Patient Care" },
-        "TEST-CMA-2026": { access: ["cma"], studentName: "Test Medical Assistant" },
-        "TEST-BUNDLE-2026": { access: ["phlebotomy", "ekg", "pct", "cma"], studentName: "Test All Courses" }
-      };
-    });
-
-  async function handleAccess(e) {
+  function handleAccess(e) {
     e.preventDefault();
     const code = document.getElementById('accessCode').value.trim().toUpperCase();
     const message = document.getElementById('message');
@@ -248,15 +239,6 @@
 
     message.className = 'message';
     btn.disabled = true;
-
-    // Reload codes from JSON to ensure we have latest
-    try {
-      const response = await fetch('./codes.json');
-      const data = await response.json();
-      VALID_CODES = data;
-    } catch (error) {
-      console.error('Error loading codes:', error);
-    }
 
     // Simulate verification delay
     setTimeout(() => {
